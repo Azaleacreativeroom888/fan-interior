@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>部屋のノート | インテリアを学ぶ・描く</title>
+<meta name="description" content="インテリアの勉強記録と、漫画・イラストを置いておくサイト。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#191970;
+  --navy-deep:#0f0f4a;
+  --orange:#ff8c00;
+  --cream:#fff4e6;
+  --ink:#191970;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.9;font-size:16px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* header */
+header{background:var(--navy);color:var(--cream);position:sticky;top:0;z-index:10;border-bottom:3px solid var(--orange)}
+.bar{max-width:1040px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.25rem;text-decoration:none;letter-spacing:.08em}
+nav ul{list-style:none;display:flex;gap:6px;flex-wrap:wrap}
+nav a{display:block;padding:6px 14px;text-decoration:none;font-size:.95rem;border-radius:999px;transition:background .2s}
+nav a:hover{background:rgba(255,140,0,.25)}
+nav a[aria-current="page"]{background:var(--orange);color:var(--navy);font-weight:700}
+
+/* hero */
+.hero{background:var(--navy);color:var(--cream);overflow:hidden}
+.hero-in{max-width:1040px;margin:0 auto;padding:64px 24px 72px;display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.5;letter-spacing:.04em}
+.hero p{margin-top:20px;max-width:30em;opacity:.92}
+.btns{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:700;border:2px solid var(--orange);transition:transform .15s,background .2s}
+.btn.main{background:var(--orange);color:var(--navy)}
+.btn.sub{color:var(--cream)}
+.btn:hover{transform:translateY(-2px)}
+.btn.sub:hover{background:rgba(255,140,0,.2)}
+.room{width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,40,.5)}
+.glow{animation:glow 5s ease-in-out infinite alternate;transform-origin:430px 150px}
+@keyframes glow{from{opacity:.75}to{opacity:1}}
+
+/* sections */
+section{padding:72px 24px}
+.wrap{max-width:1040px;margin:0 auto}
+h2{font-family:var(--serif);font-size:1.8rem;letter-spacing:.05em;border-left:8px solid var(--orange);padding-left:16px;line-height:1.4}
+.lead{margin-top:16px;max-width:36em}
+
+/* contents list */
+.rooms{margin-top:40px;border-top:2px solid var(--navy)}
+.rooms a{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:center;padding:26px 8px;border-bottom:2px solid var(--navy);text-decoration:none;transition:background .2s,padding-left .2s}
+.rooms a:hover{background:var(--navy);color:var(--cream);padding-left:20px}
+.rooms .file{font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--orange)}
+.rooms .name{font-weight:700;font-size:1.1rem}
+.rooms .desc{display:block;font-weight:400;font-size:.95rem;opacity:.85}
+.rooms .go{font-weight:700}
+
+/* palette */
+.palette{background:var(--navy-deep);color:var(--cream)}
+.swatches{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:6px;overflow:hidden}
+.sw{padding:44px 24px 20px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end}
+.sw b{font-family:var(--serif);font-size:1.2rem}
+.sw span{font-size:.9rem}
+.sw.a{background:#ff8c00;color:#191970}
+.sw.b{background:#191970;color:#fff4e6;outline:1px solid rgba(255,244,230,.25);outline-offset:-1px}
+.sw.c{background:#fff4e6;color:#191970}
+
+footer{background:var(--navy);color:var(--cream);text-align:center;padding:28px 24px;border-top:3px solid var(--orange);font-size:.9rem}
+
+@media (max-width:760px){
+  .hero-in{grid-template-columns:1fr;padding:44px 20px 52px}
+  section{padding:52px 20px}
+  .rooms a{grid-template-columns:1fr;gap:6px}
+  .rooms .go{display:none}
+  .swatches{grid-template-columns:1fr}
+  .sw{min-height:110px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .glow{animation:none}
+  .btn,.rooms a{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="logo" href="index.html">部屋のノート</a>
+    <nav aria-label="メインメニュー">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="hero-in">
+      <div>
+        <h1>灯りをひとつ、<br>部屋に足してみる。</h1>
+        <p>インテリアを勉強しながら、気づいたことを書き留めて、漫画やイラストにして置いておくサイトです。</p>
+        <div class="btns">
+          <a class="btn main" href="blog.html">勉強の記録を読む</a>
+          <a class="btn sub" href="gallery.html">作品を見る</a>
+        </div>
+      </div>
+
+      <svg class="room" viewBox="0 0 600 420" role="img" aria-label="紺色の壁に、オレンジのソファとフロアランプが置かれた部屋のイラスト" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="lamp" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#ff8c00" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#ff8c00" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- wall & floor -->
+        <rect width="600" height="420" fill="#191970"/>
+        <rect y="320" width="600" height="100" fill="#0f0f4a"/>
+        <rect y="316" width="600" height="6" fill="#ff8c00"/>
+        <!-- window -->
+        <rect x="60" y="50" width="170" height="190" fill="#fff4e6"/>
+        <rect x="68" y="58" width="154" height="174" fill="#ffb454"/>
+        <rect x="68" y="58" width="154" height="70" fill="#ff8c00"/>
+        <rect x="142" y="58" width="6" height="174" fill="#fff4e6"/>
+        <rect x="68" y="140" width="154" height="6" fill="#fff4e6"/>
+        <!-- picture frames -->
+        <rect x="290" y="70" width="70" height="90" fill="none" stroke="#fff4e6" stroke-width="4"/>
+        <circle cx="325" cy="108" r="16" fill="#ff8c00"/>
+        <rect x="302" y="132" width="46" height="14" fill="#fff4e6" opacity=".85"/>
+        <!-- lamp glow -->
+        <g class="glow"><circle cx="430" cy="150" r="150" fill="url(#lamp)"/></g>
+        <!-- floor lamp -->
+        <path d="M400 130 L460 130 L448 80 L412 80 Z" fill="#fff4e6"/>
+        <rect x="428" y="130" width="4" height="180" fill="#fff4e6"/>
+        <ellipse cx="430" cy="312" rx="28" ry="6" fill="#fff4e6"/>
+        <!-- sofa -->
+        <rect x="90" y="236" width="270" height="76" rx="10" fill="#ff8c00"/>
+        <rect x="76" y="260" width="40" height="64" rx="10" fill="#e07a00"/>
+        <rect x="334" y="260" width="40" height="64" rx="10" fill="#e07a00"/>
+        <rect x="120" y="262" width="210" height="48" rx="8" fill="#ff9f2e"/>
+        <rect x="96" y="322" width="10" height="14" fill="#fff4e6"/>
+        <rect x="344" y="322" width="10" height="14" fill="#fff4e6"/>
+        <!-- cushion -->
+        <rect x="140" y="236" width="44" height="44" rx="8" fill="#191970" transform="rotate(-8 162 258)"/>
+        <!-- rug -->
+        <ellipse cx="260" cy="372" rx="200" ry="26" fill="#fff4e6" opacity=".9"/>
+        <ellipse cx="260" cy="372" rx="150" ry="17" fill="none" stroke="#ff8c00" stroke-width="3"/>
+        <!-- plant -->
+        <path d="M520 316 L504 270 L556 270 L540 316 Z" fill="#fff4e6"/>
+        <path d="M530 270 C500 230 505 200 520 180 C525 215 535 235 530 270Z" fill="#ff8c00"/>
+        <path d="M530 270 C560 235 568 205 556 175 C545 205 535 235 530 270Z" fill="#ffb454"/>
+        <path d="M530 270 C528 225 530 195 535 160 C542 200 538 235 530 270Z" fill="#ff8c00"/>
+      </svg>
+    </div>
+  </div>
+
+  <section aria-labelledby="menu">
+    <div class="wrap">
+      <h2 id="menu">このサイトの部屋</h2>
+      <p class="lead">見たいところから入ってください。</p>
+      <div class="rooms">
+        <a href="blog.html">
+          <span class="file">blog</span>
+          <span class="name">勉強の記録<span class="desc">インテリアの勉強の進み具合を、日付と日記で。</span></span>
+          <span class="go">読む</span>
+        </a>
+        <a href="gallery.html">
+          <span class="file">gallery</span>
+          <span class="name">作品置き場<span class="desc">漫画やイラストをまとめています。</span></span>
+          <span class="go">見る</span>
+        </a>
+        <a href="about.html">
+          <span class="file">about</span>
+          <span class="name">このサイトと管理人<span class="desc">サイトの目的と、作っている人のこと。</span></span>
+          <span class="go">知る</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="palette" aria-labelledby="color">
+    <div class="wrap">
+      <h2 id="color">このサイトの色</h2>
+      <p class="lead">夜の壁の紺色と、あかりのオレンジ。部屋に灯りをともすイメージで色を決めました。</p>
+      <div class="swatches">
+        <div class="sw a"><b>あかり</b><span>#ff8c00</span></div>
+        <div class="sw b"><b>夜の壁</b><span>#191970</span></div>
+        <div class="sw c"><b>紙の白</b><span>#fff4e6</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 部屋のノート</p>
+</footer>
+
+</body>
+</html>
